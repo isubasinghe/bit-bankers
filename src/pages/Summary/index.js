@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="right" ref={ref} {...props} />;
+  return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const Donations = props => {
@@ -60,19 +60,19 @@ const Donations = props => {
     if (recent) {
       return recent.docs.map(doc => {
         const { amount, cause } = doc.data();
-        return ({
+        return {
           title: cause.title,
           value: amount
-        })
-      })
-    } else return []
-  }
+        };
+      });
+    } else return [];
+  };
 
   return (
     <Dialog
       fullScreen
       open={true}
-      onClose={() => { }}
+      onClose={() => {}}
       TransitionComponent={Transition}
       className={classes.appBar}
     >
