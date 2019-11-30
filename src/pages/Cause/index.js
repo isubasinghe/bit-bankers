@@ -60,15 +60,18 @@ const useStyles = makeStyles(theme => ({
 
   margin: {
     width: "150px",
-    marginLeft: "20px"
+    marginLeft: "20px",
+    marginTop: "15px"
 
   },
 
   donation: {
     width: "150px",
-    height: "40px"
+    height: "40px",
+    marginTop: "15px"
   }
 }));
+
 const Cause = props => {
   const { causeId } = useParams();
   const classes = useStyles();
