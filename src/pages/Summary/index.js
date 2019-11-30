@@ -36,12 +36,7 @@ const Donations = props => {
   const classes = useStyles();
 
   return (
-    <Dialog
-      fullScreen
-      open={true}
-      onClose={() => {}}
-      TransitionComponent={Transition}
-    >
+    <Dialog fullScreen open={true} TransitionComponent={Transition}>
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton

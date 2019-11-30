@@ -1,17 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import {
-  Dialog,
-  Slide,
-  AppBar,
-  Toolbar,
-  Container,
-  Typography,
-  Divider,
-  Paper,
-  makeStyles,
-  IconButton
-} from "@material-ui/core";
+import {Dialog, Slide, AppBar, Toolbar, Container, Typography, Divider, Paper, makeStyles, IconButton } from "@material-ui/core";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -35,23 +24,30 @@ const useStyles = makeStyles(theme => ({
     position: "relative"
   }
 }));
+
 const Cause = props => {
   const { causeId } = useParams();
   const classes = useStyles();
   return (
-    <>
       <Dialog fullScreen open={true} TransitionComponent={Transition}>
-        <AppBar className={classes.appBar}>
-          <Toolbar>
+
+      <AppBar className={classes.appBar}>
+        <Toolbar>
             <IconButton
+              color="inherit"
               onClick={() => {
                 props.history.goBack();
               }}
             >
-              <ChevronLeft />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
+            <ChevronLeft />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Profile
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+
         <Container>
           <Typography align="center" variant="h4">
             {causeId}
@@ -69,7 +65,6 @@ const Cause = props => {
           <Typography align="center" variant="h5" noWrap={true}></Typography>
         </Paper>
       </Dialog>
-    </>
   );
 };
 
