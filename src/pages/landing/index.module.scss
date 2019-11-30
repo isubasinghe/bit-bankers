@@ -1,5 +1,68 @@
 .gridContainer {
     display: grid;
-    grid-template-rows: 6fr 4fr;
-    width: 100%;
+    grid-template-rows: 7fr 3fr;
+    width: 100vw;
+    height: 100vh;
+}
+
+.navbar {
+    position: relative;
+    background-color: transparent;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    top: 20px;
+    left: 5vw;
+    width: 90vw;
+}
+
+.circleContainer {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.hamburgerMenu {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.circleContainer:hover {
+    opacity: 1;
+}
+
+
+.tableList{
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, calc(100%/3));
+    grid-template-rows: repeat(3, calc(100%/3));
+    overflow: hidden;
+}
+  
+.tableChild{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    color: var(--symbol-color);
+    font-size: 2.5rem;
+    border-bottom: var(--border);
+    border-left: var(--border);
+    margin-left: -2px;
+    margin-bottom: -2px;
+}
+
+.top {
+    background-color: yellow;
+}
+
+.bottom {
+    background-color: whitesmoke;
+
 }
