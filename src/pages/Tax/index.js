@@ -32,9 +32,6 @@ const useStyles = makeStyles(theme => ({
   boxing: {
     marginLeft: '10px',
     width: '60%'
-  },
-  calc: {
-    width: '150px'
   }
 }));
 
