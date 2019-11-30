@@ -17,8 +17,8 @@ import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import BarChart from "../../components/bar";
-import { useDocument } from "react-firebase-hooks/firestore";
-import { userRef } from "../../firestoreAPI.js";
+import { useDocument, useCollection } from "react-firebase-hooks/firestore";
+import { userRef, allTransactions } from "../../firestoreAPI.js";
 import firebase from "../../firebaseConfig.js"
 
 const useStyles = makeStyles(theme => ({
@@ -62,8 +62,27 @@ const Tax = props => {
     amount: ""
   });
 
-  const [user, loading, error] = useDocument(userRef(firebase.auth().currentUser.uid))
-  console.log(user ? user.data() : "")
+  const [user] = useDocument(userRef(firebase.auth().currentUser.uid))
+  const [transactions] = useCollection(allTransactions(firebase.auth().currentUser.uid))
+
+  const totalDonated = () => {
+    if (transactions) {
+      return transactions.docs.reduce((prev, curr) => prev + curr.data().donatedAmount, 0)
+    } else {
+      return 0
+    }
+  }
+
+  const totalAmount = () => {
+    if (transactions) {
+      return transactions.docs.reduce((prev, curr) => prev + curr.data().amount, 0)
+    } else {
+      return 0
+    }
+  }
+
+  console.log(totalDonated())
+  console.log(totalAmount())
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
