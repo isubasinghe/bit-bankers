@@ -200,14 +200,14 @@ const Cause = props => {
           />
         </div>
       </div>
-      <div className={classes.yellow}>
+      {/* <div className={classes.yellow}>
         <div className={classes.spacing}>
           <h1 className={classes.header}>Yes</h1>
           <p className={classes.description}>
             This is where our money is going, are you fricken happy or wot?
           </p>
         </div>
-      </div>
+      </div> */}
       <div className={classes.black}>
         <div className={classes.spacing}>
           <h1 className={classes.header2}>Graph</h1>
@@ -218,14 +218,14 @@ const Cause = props => {
           />
         </div>
       </div>
-      <div className={classes.yellow}>
+      {/* <div className={classes.yellow}>
         <div className={classes.spacing}>
           <h1 className={classes.header}>Yes</h1>
           <p className={classes.description}>
             This is where our money is going, are you fricken happy or wot?
           </p>
         </div>
-      </div>
+      </div> */}
       <div className={classes.black}>
         <div className={classes.spacing}>
           <h1 className={classes.header2}>Graph</h1>
@@ -300,7 +300,12 @@ const Cause = props => {
         Amount to donate: {taxedReductions}
       </Typography>
       <div className={classes.flexEnd}>
-        <Button onClick={makePayment} disabled={values.amount === ""}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={makePayment}
+          disabled={values.amount === ""}
+        >
           Make payment
         </Button>
       </div>
