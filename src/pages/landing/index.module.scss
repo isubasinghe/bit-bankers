@@ -36,28 +36,6 @@
     opacity: 1;
 }
 
-
-.tableList{
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, calc(100%/3));
-    grid-template-rows: repeat(3, calc(100%/3));
-    overflow: hidden;
-}
-  
-.tableChild{
-    height: 100px;
-    display: flex;
-    align-items: center;
-    align-content: center;
-    color: var(--symbol-color);
-    font-size: 2.5rem;
-    border-bottom: var(--border);
-    border-left: var(--border);
-    margin-left: -2px;
-    margin-bottom: -2px;
-}
-
 .top {
     background-color: yellow;
 }
