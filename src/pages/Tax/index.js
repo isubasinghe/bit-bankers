@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Dialog from "@material-ui/core/Dialog";
+import { Dialog, Divider, TextField } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -21,6 +21,17 @@ const useStyles = makeStyles(theme => ({
   },
   media: {
     height: 140
+  },
+  scrollingContainer: {
+    heigth: 100,
+    marginBottom: '20px'
+  },
+  content: {
+    width: '50%'
+  },
+  boxing: {
+    marginLeft: '10px',
+    width: '60%'
   }
 }));
 
@@ -54,8 +65,29 @@ const Tax = props => {
           </Typography>
         </Toolbar>
       </AppBar>
+      <Divider />
+      <Typography align="center" variant="h6">
+        Donations
+      </Typography>
+      <Divider />
+
+      <Divider />
+      <Typography align="center" variant="h6">
+        Tax Effect
+      </Typography>
+      <Divider />
+
+    <form className={classes.boxing} noValidate autoComplete="off">
+      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+    </form>
+          
+
     </Dialog>
   );
 };
 
 export default Tax;
+
+
+
+
