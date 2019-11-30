@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   Dialog,
   Slide,
@@ -13,6 +13,7 @@ import {
   IconButton,
   FormControl,
   InputLabel,
+  Button,
   FilledInput,
   InputAdornment,
   Grid,
@@ -40,15 +41,14 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     position: "relative"
-
   },
   calc: {
-    width: '150px',
-    height: '57px',
+    width: "150px",
+    height: "57px",
     marginLeft: "20px",
     marginTop: "20px"
   },
-  
+
   amount: {
     fontSize: "18px",
     fontFamily: "Arial",
@@ -58,10 +58,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   margin: {
-    width: "150px",
-    marginLeft: "20px",
-    marginTop: "15px"
-
+    marginTop: "10px"
   },
 
   donation: {
@@ -77,7 +74,8 @@ const Cause = props => {
 
   const [values, setValues] = React.useState({
     amount: "",
-    method: "One Off"
+    method: "One Off",
+    donation: "Round Up"
   });
 
   const handleChange = prop => event => {
@@ -117,47 +115,19 @@ const Cause = props => {
 
         <Divider />
         <Typography align="center" variant="h6">
-          Tax Effect
+          Donate
         </Typography>
         <Divider />
 
-         <div>
-          <Grid container spacing = {3}>
-          <Grid item xs>
-        
-          <FormControl fullWidth className={classes.margin} variant="filled">
-            <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-            <FilledInput
-              id="filled-adornment-amount"
-              value={values.amount}
-              onChange={handleChange('amount')}
-              startAdornment={<InputAdornment position="start">$</InputAdornment>}
-              />
-          </FormControl>
-          </Grid>
-
-          <Grid item xs>
-          <FormControl fullWidth className={classes.donation} variant="filled">
-              <FilledInput
-              value={values.amount}
-              onChange={handleChange('amount')}
-              startAdornment={<InputAdornment position="start">$</InputAdornment>}
-              />
-          </FormControl>
-          </Grid>
-
-          </Grid>       
-         
-      
-        <Button variant="outlined" color="secondary" className={classes.calc}>
-          CALCULATE
-        </Button>
-        
-
-        <p className={classes.amount}>Donation Amount</p>
-
-        </div>
-             
+        <FormControl fullWidth className={classes.margin} variant="filled">
+          <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+          <FilledInput
+            id="filled-adornment-amount"
+            value={values.amount}
+            onChange={handleChange("amount")}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          />
+        </FormControl>
 
         <Divider />
         <FormControl fullWidth className={classes.margin}>
@@ -181,17 +151,20 @@ const Cause = props => {
                 variant="filled"
               >
                 <InputLabel htmlFor="filled-adornment-amount">
-                  Amount
+                  Donation method
                 </InputLabel>
-                <FilledInput
-                  id="filled-adornment-amount"
-                  value={values.amount}
-                  onChange={handleChange("amount")}
-                  startAdornment={
-                    <InputAdornment position="start">$</InputAdornment>
-                  }
-                  placeholder="Amount willing to donate"
-                />
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={values.donation}
+                  onChange={handleChange("donation")}
+                >
+                  <MenuItem value={"Round Up"}>Round Up</MenuItem>
+                  <MenuItem value={"Monthly"}>Monthly</MenuItem>
+                  <MenuItem value={"Income Percentage"}>
+                    Income Percentage
+                  </MenuItem>
+                </Select>
               </FormControl>
             </>
           ) : (
