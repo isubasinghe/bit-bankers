@@ -106,10 +106,11 @@ const useStyles = makeStyles(theme => ({
     height: "40px",
     marginTop: "15px"
   },
-  flexEnd: {
+  flexCenter: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-end"
+    justifyContent: "center",
+    width: "100vw"
   }
 }));
 
@@ -298,8 +299,9 @@ const Cause = props => {
       <Typography variant="h6" align="left">
         Amount to donate: {taxedReductions}
       </Typography>
-      <div className={classes.flexEnd}>
+      <div className={classes.flexCenter}>
         <Button
+          style={{ width: "80vw", marginBottom: "20px" }}
           variant="contained"
           color="primary"
           onClick={makePayment}
