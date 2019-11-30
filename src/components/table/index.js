@@ -24,7 +24,7 @@ const TransactionTable = props => {
         <TableHead>
           <TableRow>
             <TableCell>Cause</TableCell>
-            <TableCell align="right">Cause</TableCell>
+            <TableCell align="right">Date</TableCell>
             <TableCell align="right">Amount</TableCell>
           </TableRow>
         </TableHead>
