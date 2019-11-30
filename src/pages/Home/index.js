@@ -76,26 +76,26 @@ const LandingPage = React.memo(props => {
         </div>
         <div className={classes.bottom}>
           <Grid container>
-            <Grid xs className={classes.grid}>
+            <Grid item xs className={classes.grid}>
               <Button className={classes.button}>Account</Button>
             </Grid>
-            <Grid xs>
+            <Grid item xs>
               <Button className={classes.button}>Pay</Button>
             </Grid>
-            <Grid xs>
+            <Grid item xs>
               <Button className={classes.button}>Bpay</Button>
             </Grid>
           </Grid>
           <Grid container>
-            <Grid xs>
+            <Grid item xs>
               <Button className={classes.button}>Transfer</Button>
             </Grid>
-            <Grid xs>
+            <Grid item xs>
               <Button className={classes.button} onClick={redirectDonate}>
                 Donate
               </Button>
             </Grid>
-            <Grid xs>
+            <Grid item xs>
               <Button className={classes.button} onClick={redirectTax}>
                 Tax
               </Button>

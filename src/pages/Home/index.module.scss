@@ -1,46 +1,45 @@
 .gridContainer {
-    display: grid;
-    grid-template-rows: 7fr 3fr;
-    width: 100vw;
-    height: 100vh;
+  display: grid;
+  grid-template-rows: auto 200px;
+  width: 100vw;
+  height: 100vh;
 }
 
 .navbar {
-    position: relative;
-    background-color: transparent;
-    z-index: 2;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    top: 20px;
-    left: 5vw;
-    width: 90vw;
+  position: relative;
+  background-color: transparent;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  top: 20px;
+  left: 5vw;
+  width: 90vw;
 }
 
 .circleContainer {
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    border-radius: 50%;
-    opacity: 0.7;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.7;
 }
 
 .hamburgerMenu {
-    width: 30px;
-    height: 30px;
-    margin-left: 5px;
-    margin-top: 5px;
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 .circleContainer:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .top {
-    background-color: rgb(254, 215, 79);
+  background-color: rgb(254, 215, 79);
 }
 
 .bottom {
-    background-color: whitesmoke;
-
+  background-color: whitesmoke;
 }
