@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Dialog,
@@ -17,7 +17,7 @@ import ChevronLeft from "@material-ui/icons/ChevronLeft";
 
 import PieChart from "../../components/piechart";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { trendingRef, causesRef, recentRef } from "../../firestoreAPI.js";
+import { trendingRef, recentRef } from "../../firestoreAPI.js";
 import firebase from "../../firebaseConfig.js";
 
 const useStyles = makeStyles(theme => ({
@@ -53,14 +53,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const Donations = props => {
   const classes = useStyles();
   const [trending] = useCollection(trendingRef);
-  // const [recent] = useCollection(recentRef(firebase.firestore().currentUser.uid));
-  // const [causes] = useCollection(causesRef);
+  const [recent] = useCollection(recentRef(firebase.auth().currentUser.uid));
 
   return (
     <Dialog
       fullScreen
       open={true}
-      onClose={() => {}}
+      onClose={() => { }}
       TransitionComponent={Transition}
       className={classes.appBar}
     >
@@ -83,51 +82,49 @@ const Donations = props => {
       </AppBar>
       <PieChart />
 
-      {/* <Divider />
+      <Divider />
       <Typography align="center" variant="h6">
-        Trending
+        Recent Donations
       </Typography>
       <Divider />
       <div className={classes.scrollingContainer}>
         <div className="scrolling-wrapper">
-          {causes
-            &&
-            causes
-              .doc.filter(doc => {
-                const { transactions } = doc.data();
-                return transactions.arrayContains
-              })
-              .docs.map(doc => {
-                const { title, image } = doc.data();
-                return (
-                  <div className="__card" key={title}>
-                    <Card className={classes.card}>
-                      <CardActionArea>
-                        <CardMedia
-                          className={classes.media}
-                          image={image}
-                          title="Contemplative Reptile"
-                        />
-                        <CardContent>
-                          <Typography className={classes.titleCard} gutterBottom variant="body1" component="h2" noWrap={true}>
-                            {title}
-                          </Typography>
-                        </CardContent>
-                      </CardActionArea>
-                    </Card>
-                  </div>
-                )
-              })
-          }
-
-          {recent && causes &&
-            causes.filter(causesFilter => {
-              const {transactions} = causesFilter.data()
-              transactions.filter
-            })
-          }
+          {recent &&
+            recent.docs.map(doc => {
+              const { cause, amount, causeId } = doc.data();
+              return (
+                <div className="__card" key={cause.title}>
+                  <Card
+                    onClick={() => {
+                      props.history.push(`/cause/${causeId}`);
+                    }}
+                    className={classes.card}
+                  >
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image={cause.image}
+                        title="Contemplative Reptile"
+                      />
+                      <CardContent>
+                        <Typography
+                          className={classes.titleCard}
+                          gutterBottom
+                          variant="body1"
+                          component="h2"
+                          noWrap={true}
+                        >
+                          {cause.title}
+                        </Typography>
+                        {`+$${amount}`}
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              );
+            })}
         </div>
-      </div> */}
+      </div>
 
       <Divider />
       <Typography align="center" variant="h6">
