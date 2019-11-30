@@ -1,6 +1,15 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Dialog, Divider, TextField } from "@material-ui/core";
+import {
+  Button,
+  Dialog,
+  Divider,
+  TextField,
+  FilledInput,
+  InputLabel,
+  InputAdornment,
+  FormControl
+} from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -33,6 +42,9 @@ const useStyles = makeStyles(theme => ({
   boxing: {
     marginLeft: "10px",
     width: "60%"
+  },
+  calc: {
+    width: "150px"
   }
 }));
 
@@ -42,6 +54,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Tax = props => {
   const classes = useStyles();
+
+  const [values, setValues] = React.useState({
+    amount: ""
+  });
+
+  const handleChange = prop => event => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
   return (
     <Dialog
       fullScreen
@@ -79,9 +100,22 @@ const Tax = props => {
       </Typography>
       <Divider />
 
-      <form className={classes.boxing} noValidate autoComplete="off">
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-      </form>
+      <div>
+        <FormControl fullWidth className={classes.margin} variant="filled">
+          <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+          <FilledInput
+            id="filled-adornment-amount"
+            value={values.amount}
+            onChange={handleChange("amount")}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          />
+        </FormControl>
+
+        <Button variant="outlined" color="secondary" className={classes.calc}>
+          CALCULATE
+        </Button>
+        <p className={classes.amount}>Amount</p>
+      </div>
     </Dialog>
   );
 };
