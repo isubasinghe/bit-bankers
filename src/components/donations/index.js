@@ -78,7 +78,7 @@ const Donations = props => {
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image="http://placekitten.com/150/200"
+                image="https://placekitten.com/150/200"
                 title="Contemplative Reptile"
               />
               <CardContent>
