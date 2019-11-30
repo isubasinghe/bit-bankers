@@ -16,17 +16,16 @@ import {
   Button,
   FilledInput,
   InputAdornment,
-  Grid,
   Select,
   MenuItem,
   Snackbar
 } from "@material-ui/core";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import { useDocument } from "react-firebase-hooks/firestore";
+import Tick from "@material-ui/icons/Check";
 import { causesRef } from "../../firestoreAPI.js";
 import taxF from "../../utils/tax";
 
@@ -107,10 +106,11 @@ const useStyles = makeStyles(theme => ({
     height: "40px",
     marginTop: "15px"
   },
-  flexEnd: {
+  flexCenter: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-end"
+    justifyContent: "center",
+    width: "100vw"
   }
 }));
 
@@ -200,14 +200,14 @@ const Cause = props => {
           />
         </div>
       </div>
-      <div className={classes.yellow}>
+      {/* <div className={classes.yellow}>
         <div className={classes.spacing}>
           <h1 className={classes.header}>Yes</h1>
           <p className={classes.description}>
             This is where our money is going, are you fricken happy or wot?
           </p>
         </div>
-      </div>
+      </div> */}
       <div className={classes.black}>
         <div className={classes.spacing}>
           <h1 className={classes.header2}>Graph</h1>
@@ -218,14 +218,14 @@ const Cause = props => {
           />
         </div>
       </div>
-      <div className={classes.yellow}>
+      {/* <div className={classes.yellow}>
         <div className={classes.spacing}>
           <h1 className={classes.header}>Yes</h1>
           <p className={classes.description}>
             This is where our money is going, are you fricken happy or wot?
           </p>
         </div>
-      </div>
+      </div> */}
       <div className={classes.black}>
         <div className={classes.spacing}>
           <h1 className={classes.header2}>Graph</h1>
@@ -299,8 +299,14 @@ const Cause = props => {
       <Typography variant="h6" align="left">
         Amount to donate: {taxedReductions}
       </Typography>
-      <div className={classes.flexEnd}>
-        <Button onClick={makePayment} disabled={values.amount === ""}>
+      <div className={classes.flexCenter}>
+        <Button
+          style={{ width: "80vw", marginBottom: "20px" }}
+          variant="contained"
+          color="primary"
+          onClick={makePayment}
+          disabled={values.amount === ""}
+        >
           Make payment
         </Button>
       </div>
