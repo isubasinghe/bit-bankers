@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import firebase from "../src/firebaseConfig.js";
 import LandingPage from "./pages/Home";
-import Debug from "./components/donations";
+import Debug from "./components/tax";
 import "./App.scss";
 
 function App() {
