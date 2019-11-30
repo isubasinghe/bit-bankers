@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import firebase from '../src/firebaseConfig.js'
-import LandingPage from './pages/landing';
+import LandingPage from './pages/Home';
 import './App.css';
 
 
