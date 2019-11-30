@@ -123,6 +123,11 @@ const Donations = props => {
         Trending
       </Typography>
       <Divider />
+      <Divider />
+      <Typography align="center" variant="h6">
+        Recommended
+      </Typography>
+      <Divider />
     </Dialog>
   );
 };
