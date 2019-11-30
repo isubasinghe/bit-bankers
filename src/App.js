@@ -2,7 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import firebase from "../src/firebaseConfig.js";
 import LandingPage from "./pages/Home";
-import Debug from "./components/donations";
+import DonationSummary from "./pages/Summary";
+import Tax from "./pages/Tax";
+
 import "./App.scss";
 
 function App() {
@@ -40,7 +42,8 @@ function App() {
   return (
     <Router>
       <Route exact path="/" component={LandingPage} />
-      <Route path="/debug" component={Debug} />
+      <Route path="/donate" component={DonationSummary} />
+      <Route path="/tax" component={Tax} />
     </Router>
   );
 }
