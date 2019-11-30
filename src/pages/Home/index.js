@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import HamBurgerMenu from "../../assets/icons/menu.svg";
+import ChatIcon from "../../assets/icons/chat.svg";
 import { Grid, Button } from "@material-ui/core";
 import styled from "./index.module.scss";
 
@@ -65,7 +66,7 @@ const LandingPage = React.memo(props => {
               <img
                 alt="search"
                 className={styled.hamburgerMenu}
-                src={HamBurgerMenu}
+                src={ChatIcon}
               />
             </div>
           </div>
