@@ -18,3 +18,8 @@ export const userRef = uuid => {
 }
 
 export const recommendedRef = db.collection("causes").where("status", "==", "recommended")
+
+export const allTransactions = uuid => {
+    return db.collection("transactions")
+        .where("userId", "==", uuid);
+}

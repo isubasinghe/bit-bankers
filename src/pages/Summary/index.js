@@ -16,7 +16,7 @@ import {
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 
 import PieChart from "../../components/piechart";
-import { useCollection, useDocument } from "react-firebase-hooks/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 import { trendingRef, recentRef, recommendedRef } from "../../firestoreAPI.js";
 import firebase from "../../firebaseConfig.js";
 
@@ -60,19 +60,19 @@ const Donations = props => {
     if (recent) {
       return recent.docs.map(doc => {
         const { amount, cause } = doc.data();
-        return {
-          title: cause.title,
+        return ({
+          title: cause ? cause.title : "",
           value: amount
-        };
-      });
-    } else return [];
-  };
+        })
+      })
+    } else return []
+  }
 
   return (
     <Dialog
       fullScreen
       open={true}
-      onClose={() => {}}
+      onClose={() => { }}
       TransitionComponent={Transition}
       className={classes.appBar}
     >
@@ -103,10 +103,10 @@ const Donations = props => {
       <div className={classes.scrollingContainer}>
         <div className="scrolling-wrapper">
           {recent &&
-            recent.docs.map(doc => {
+            recent.docs.map((doc, index) => {
               const { cause, amount, causeId } = doc.data();
               return (
-                <div className="__card" key={cause.title}>
+                <div className="__card" key={index}>
                   <Card
                     onClick={() => {
                       props.history.push(`/cause/${causeId}`);
@@ -116,7 +116,7 @@ const Donations = props => {
                     <CardActionArea>
                       <CardMedia
                         className={classes.media}
-                        image={cause.image}
+                        image={cause ? cause.image : ""}
                         title="Contemplative Reptile"
                       />
                       <CardContent>
@@ -127,7 +127,7 @@ const Donations = props => {
                           component="h2"
                           noWrap={true}
                         >
-                          {cause.title}
+                          {cause ? cause.title : ""}
                         </Typography>
                         {`+$${amount}`}
                       </CardContent>
