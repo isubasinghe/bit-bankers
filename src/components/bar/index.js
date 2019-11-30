@@ -27,7 +27,7 @@ const BarChar = props => {
       options={{
         chartArea: { width: "50%" },
         hAxis: {
-          title: "Total Population",
+          title: "",
           minValue: 0
         },
         vAxis: {
