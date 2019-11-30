@@ -18,6 +18,7 @@ import {
   InputAdornment
 } from "@material-ui/core";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
+import { light } from "@material-ui/core/styles/createPalette";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
@@ -38,7 +39,40 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     position: "relative"
-  }
+  },
+  yellow: {
+    background: 'rgb(253, 214, 91)',
+    height: '150px',
+    boxShadow: "0 3px 5px 2px rgba(248, 208, 79, 1)",
+  },
+  black: {
+    background: 'rgb(65, 63, 65)'
+  },
+  description: {
+    marginLeft: '20px',
+    marginRight: '20px',
+    fontFamily: 'Verdana',
+    textAlign: 'center',
+    marginBottom: '20px'
+  }, 
+  header: {
+    marginLeft: '20px',
+    marginRight: '20px',
+    fontFamily: 'Verdana',
+    fontWeight: 'skinny',
+    textAlign: 'center'
+  },
+  spacing: {
+    marginBottom: '50px'
+  },
+  header2: {
+    marginLeft: '20px',
+    marginRight: '20px',
+    fontFamily: 'Verdana',
+    fontWeight: 'skinny',
+    textAlign: 'center',
+    color: 'rgb(214, 214, 214)'
+  },
 }));
 
 const Cause = props => {
@@ -83,6 +117,44 @@ const Cause = props => {
           className={classes.image}
           src="https://scontent.fmel7-1.fna.fbcdn.net/v/t1.15752-9/78450477_2502956249976006_3599448396689047552_n.jpg?_nc_cat=107&_nc_ohc=jSFIHZjh6OYAQmb6zJL5MFEIvYFz-uLV9lyHzQGgkgXXVZFRLXoJ3wHJA&_nc_ht=scontent.fmel7-1.fna&oh=3a3aa0bb826f318dc7e10a513594397c&oe=5E81D77D"
         />
+        <p className={classes.description}>Bushfires in Australia are common, impact extensive areas, and can cause property damage and loss of human life. However, certain native flora in Australia have evolved to rely on bushfires as a means of reproduction, and fire events are an interwoven and an essential part of the ecology of the continent.</p>
+        <div className={classes.yellow}>
+            <div className={classes.spacing}>
+            <h1 className={classes.header}>Yes</h1>
+            <p className={classes.description}>This is where our money is going, are you fricken happy or wot?</p>
+            </div>
+        </div>
+        <div className={classes.black}>
+            <div className={classes.spacing}>
+            <h1 className={classes.header2}>Graph</h1>
+            <p className={classes.header2}>Graph and stats can go here</p>
+            </div>
+        </div>
+        <div className={classes.yellow}>
+            <div className={classes.spacing}>
+            <h1 className={classes.header}>Yes</h1>
+            <p className={classes.description}>This is where our money is going, are you fricken happy or wot?</p>
+            </div>
+        </div>
+        <div className={classes.black}>
+            <div className={classes.spacing}>
+            <h1 className={classes.header2}>Graph</h1>
+            <p className={classes.header2}>Graph and stats can go here</p>
+            </div>
+        </div>
+        <div className={classes.yellow}>
+            <div className={classes.spacing}>
+            <h1 className={classes.header}>Yes</h1>
+            <p className={classes.description}>This is where our money is going, are you fricken happy or wot?</p>
+            </div>
+        </div>
+        <div className={classes.black}>
+            <div className={classes.spacing}>
+            <h1 className={classes.header2}>Graph</h1>
+            <p className={classes.header2}>Graph and stats can go here</p>
+            </div>
+        </div>
+
         <Divider style={{ marginTop: "10px" }} />
 
         <Divider />
