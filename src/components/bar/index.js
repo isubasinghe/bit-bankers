@@ -1,5 +1,6 @@
 import React from "react";
 import { Chart } from "react-google-charts";
+import { HashLoader } from "react-spinners";
 
 const BarChar = props => {
   return (
@@ -7,7 +8,17 @@ const BarChar = props => {
       width={"100%"}
       height={"300px"}
       chartType="BarChart"
-      loader={<div>Loading Chart</div>}
+      loader={
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center"
+          }}
+        >
+          <HashLoader />
+        </div>
+      }
       data={[
         ["Method", "AUD"],
         ["Donated", 8175000],
