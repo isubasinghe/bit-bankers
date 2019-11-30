@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
+import BarChart from "../../components/bar";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -24,14 +25,14 @@ const useStyles = makeStyles(theme => ({
   },
   scrollingContainer: {
     heigth: 100,
-    marginBottom: '20px'
+    marginBottom: "20px"
   },
   content: {
-    width: '50%'
+    width: "50%"
   },
   boxing: {
-    marginLeft: '10px',
-    width: '60%'
+    marginLeft: "10px",
+    width: "60%"
   }
 }));
 
@@ -46,7 +47,7 @@ const Tax = props => {
       fullScreen
       open={true}
       onClose={() => {}}
-      TransitionComponent={Transition}   
+      TransitionComponent={Transition}
     >
       <AppBar className={classes.appBar}>
         <Toolbar>
@@ -65,6 +66,7 @@ const Tax = props => {
           </Typography>
         </Toolbar>
       </AppBar>
+      <BarChart />
       <Divider />
       <Typography align="center" variant="h6">
         Donations
@@ -77,17 +79,11 @@ const Tax = props => {
       </Typography>
       <Divider />
 
-    <form className={classes.boxing} noValidate autoComplete="off">
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-    </form>
-          
-
+      <form className={classes.boxing} noValidate autoComplete="off">
+        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+      </form>
     </Dialog>
   );
 };
 
 export default Tax;
-
-
-
-
