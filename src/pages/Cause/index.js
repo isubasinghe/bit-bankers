@@ -103,15 +103,18 @@ const useStyles = makeStyles(theme => ({
   },
 
   margin: {
-    marginTop: "10px",
+    marginTop: "15px",
     width: '90%',
-    align: 'center'
+    align: 'center',
+    marginLeft: "5%",
+    marginBottom: "15px"
   },
 
   donation: {
     width: "150px",
     height: "40px",
     marginTop: "15px"
+
   },
   flexCenter: {
     display: "flex",
@@ -248,19 +251,18 @@ const Cause = props => {
           </div>
         )}
       </div>
-
-      <Divider style={{ marginTop: "10px" }} />
-      <Divider />
+      
+      <Divider style={{ marginTop: "25px" }} />
       <Paper>
         <Typography align="center" variant="h5" noWrap={true}></Typography>
-      </Paper>
-
+      </Paper>   
+     
       <Typography align="center" variant="h6">
         Donate
       </Typography>
       <Divider />
-      <div style={{align: 'center', width:'100px'}}>
-      <FormControl className={classes.margin} variant="filled">
+      
+        <FormControl className={classes.margin} variant="filled">
         <InputLabel align='center' htmlFor="filled-adornment-amount">Amount</InputLabel>
         <FilledInput
           id="filled-adornment-amount"
@@ -270,7 +272,7 @@ const Cause = props => {
             <InputAdornment position="start">{symbol}</InputAdornment>
           }
         />
-      </FormControl></div>
+      </FormControl>
 
       <Divider />
       <FormControl fullWidth className={classes.margin}>
@@ -310,12 +312,14 @@ const Cause = props => {
             <></>
           )}
       </FormControl>
+      <div style={{marginLeft: "5%"}}>
       <Typography variant="h6" align="left">
         Amount to donate: {taxedReductions}
       </Typography>
+      </div>
       <div className={classes.flexCenter}>
         <Button
-          style={{ width: "80vw", marginBottom: "20px" }}
+          style={{ width: "80vw", marginBottom: "20px", marginTop: "15px" }}
           variant="contained"
           color="primary"
           onClick={makePayment}
