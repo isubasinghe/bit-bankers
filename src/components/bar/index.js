@@ -21,8 +21,8 @@ const BarChar = props => {
       }
       data={[
         ["Method", "AUD"],
-        ["Donated", 8175000],
-        ["Tax Return", 3792000]
+        ["Donated", props.donated],
+        ["Tax Returns", props.taxReturns]
       ]}
       options={{
         chartArea: { width: "50%" },
