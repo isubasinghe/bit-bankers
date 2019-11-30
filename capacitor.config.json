@@ -1,0 +1,8 @@
+{
+  "appId": "com.isub.bitbankers",
+  "appName": "BitBankers",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "build",
+  "cordova": {}
+}
