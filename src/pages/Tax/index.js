@@ -35,8 +35,7 @@ const Tax = props => {
       fullScreen
       open={true}
       onClose={() => {}}
-      TransitionComponent={Transition}
-      className={classes.appBar}
+      TransitionComponent={Transition}   
     >
       <AppBar className={classes.appBar}>
         <Toolbar>
