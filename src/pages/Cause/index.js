@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import {
   Dialog,
   Slide,
@@ -15,7 +15,10 @@ import {
   InputLabel,
   FilledInput,
   Button,
-  InputAdornment
+  InputAdornment,
+  Grid,
+  Select,
+  MenuItem
 } from "@material-ui/core";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import { light } from "@material-ui/core/styles/createPalette";
@@ -73,6 +76,33 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     color: 'rgb(214, 214, 214)'
   },
+  calc: {
+    width: '150px',
+    height: '57px',
+    marginLeft: "20px",
+    marginTop: "20px"
+  },
+  
+  amount: {
+    fontSize: "18px",
+    fontFamily: "Arial",
+    fontWeight: "Bold",
+    marginLeft: "200px",
+    marginTop: "-40px"
+  },
+
+  margin: {
+    width: "150px",
+    marginLeft: "20px",
+    marginTop: "15px"
+
+  },
+
+  donation: {
+    width: "150px",
+    height: "40px",
+    marginTop: "15px"
+  }
 }));
 
 const Cause = props => {
@@ -80,9 +110,10 @@ const Cause = props => {
   const classes = useStyles();
 
   const [values, setValues] = React.useState({
-    amount: ''
+    amount: "",
+    method: "One Off"
   });
-  
+
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -163,28 +194,88 @@ const Cause = props => {
         </Paper>
 
         <Divider />
-      <Typography align="center" variant="h6">
-        Tax Effect
-      </Typography>
-      <Divider />
+        <Typography align="center" variant="h6">
+          Tax Effect
+        </Typography>
+        <Divider />
 
          <div>
-        <FormControl fullWidth className={classes.margin} variant="filled">
-          <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-          <FilledInput
-            id="filled-adornment-amount"
-            value={values.amount}
-            onChange={handleChange('amount')}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            />
-        </FormControl>
+          <Grid container spacing = {3}>
+          <Grid item xs>
+        
+          <FormControl fullWidth className={classes.margin} variant="filled">
+            <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+            <FilledInput
+              id="filled-adornment-amount"
+              value={values.amount}
+              onChange={handleChange('amount')}
+              startAdornment={<InputAdornment position="start">$</InputAdornment>}
+              />
+          </FormControl>
+          </Grid>
+
+          <Grid item xs>
+          <FormControl fullWidth className={classes.donation} variant="filled">
+              <FilledInput
+              value={values.amount}
+              onChange={handleChange('amount')}
+              startAdornment={<InputAdornment position="start">$</InputAdornment>}
+              />
+          </FormControl>
+          </Grid>
+
+          </Grid>       
+         
       
         <Button variant="outlined" color="secondary" className={classes.calc}>
           CALCULATE
         </Button>
-          <p className={classes.amount}>Amount</p>
-        </div>
+        
 
+        <p className={classes.amount}>Donation Amount</p>
+
+        </div>
+             
+
+        <Divider />
+        <FormControl fullWidth className={classes.margin}>
+          <InputLabel htmlFor="filled-adornment-amount">
+            Payment method
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={values.method}
+            onChange={handleChange("method")}
+          >
+            <MenuItem value={"One Off"}>One Off</MenuItem>
+            <MenuItem value={"Setup"}>Setup</MenuItem>
+          </Select>
+          {values.method === "Setup" ? (
+            <>
+              <FormControl
+                fullWidth
+                className={classes.margin}
+                variant="filled"
+              >
+                <InputLabel htmlFor="filled-adornment-amount">
+                  Amount
+                </InputLabel>
+                <FilledInput
+                  id="filled-adornment-amount"
+                  value={values.amount}
+                  onChange={handleChange("amount")}
+                  startAdornment={
+                    <InputAdornment position="start">$</InputAdornment>
+                  }
+                  placeholder="Amount willing to donate"
+                />
+              </FormControl>
+            </>
+          ) : (
+            <></>
+          )}
+        </FormControl>
       </Dialog>
   );
 };
