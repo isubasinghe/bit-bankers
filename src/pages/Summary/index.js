@@ -59,20 +59,20 @@ const Donations = props => {
   const donationsData = () => {
     if (recent) {
       return recent.docs.map(doc => {
-        const { amount, cause } = doc.data();
-        return ({
+        const { donatedAmount, cause } = doc.data();
+        return {
           title: cause ? cause.title : "",
-          value: amount
-        })
-      })
-    } else return []
-  }
+          value: donatedAmount
+        };
+      });
+    } else return [];
+  };
 
   return (
     <Dialog
       fullScreen
       open={true}
-      onClose={() => { }}
+      onClose={() => {}}
       TransitionComponent={Transition}
       className={classes.appBar}
     >
@@ -104,7 +104,7 @@ const Donations = props => {
         <div className="scrolling-wrapper">
           {recent &&
             recent.docs.map((doc, index) => {
-              const { cause, amount, causeId } = doc.data();
+              const { cause, donatedAmount, causeId } = doc.data();
               return (
                 <div className="__card" key={index}>
                   <Card
@@ -129,7 +129,7 @@ const Donations = props => {
                         >
                           {cause ? cause.title : ""}
                         </Typography>
-                        {`+$${amount}`}
+                        {`+$${donatedAmount}`}
                       </CardContent>
                     </CardActionArea>
                   </Card>
