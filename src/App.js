@@ -7,24 +7,31 @@ import './App.css';
 
 function App() {
 
-  const db = firebase.firestore();
-  const userRef = db.collection("users").doc("sayuj")
+  const sayujDetails = firebase.auth().signInWithEmailAndPassword("sayuj98@gmail.com", "123456")
 
-  userRef.get().then(doc => {
-    if (doc.exists) {
-      console.log(doc.data())
-    } else {
-      console.log("document does not exist")
-    }
+  sayujDetails.then(() => {
+    const db = firebase.firestore();
+    const userRef = db.collection("users").doc(firebase.auth().currentUser.uid)
+
+    userRef.get().then(doc => {
+      if (doc.exists) {
+        console.log(doc.data())
+      } else {
+        console.log("document does not exist")
+      }
+    })
+      .catch(error => {
+        console.log(error)
+      })
   })
     .catch(error => {
       console.log(error)
     })
 
   return (
-   <Router>
-     <Route exact path="/" component={LandingPage}/>
-   </Router>
+    <Router>
+      <Route exact path="/" component={LandingPage} />
+    </Router>
   );
 }
 
