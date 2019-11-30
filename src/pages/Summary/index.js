@@ -1,12 +1,24 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Dialog, Divider, AppBar, Toolbar, IconButton, Typography, Slide, Card, CardContent, CardActionArea, CardMedia } from "@material-ui/core";
+import {
+  Dialog,
+  Divider,
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Slide,
+  Card,
+  CardContent,
+  CardActionArea,
+  CardMedia
+} from "@material-ui/core";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 
 import PieChart from "../../components/piechart";
-import { useCollection } from 'react-firebase-hooks/firestore';
-import { trendingRef, causesRef, recentRef } from "../../firestoreAPI.js"
-import firebase from "../../firebaseConfig.js"
+import { useCollection } from "react-firebase-hooks/firestore";
+import { trendingRef, causesRef, recentRef } from "../../firestoreAPI.js";
+import firebase from "../../firebaseConfig.js";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -24,13 +36,13 @@ const useStyles = makeStyles(theme => ({
   },
   scrollingContainer: {
     heigth: 100,
-    marginBottom: '20px'
+    marginBottom: "20px"
   },
   content: {
-    width: '50%'
+    width: "50%"
   },
   titleCard: {
-    wordWrap: 'break-word'
+    wordWrap: "break-word"
   }
 }));
 
@@ -48,7 +60,7 @@ const Donations = props => {
     <Dialog
       fullScreen
       open={true}
-      onClose={() => { }}
+      onClose={() => {}}
       TransitionComponent={Transition}
       className={classes.appBar}
     >
@@ -124,35 +136,43 @@ const Donations = props => {
       <Divider />
       <div className={classes.scrollingContainer}>
         <div className="scrolling-wrapper">
-          {trending
-            &&
-            trending
-              .docs.map(doc => {
-                const { title, image } = doc.data();
-                return (
-                  <div className="__card" key={title}>
-                    <Card className={classes.card}>
-                      <CardActionArea>
-                        <CardMedia
-                          className={classes.media}
-                          image={image}
-                          title="Contemplative Reptile"
-                        />
-                        <CardContent>
-                          <Typography className={classes.titleCard} gutterBottom variant="body1" component="h2" noWrap={true}>
-                            {title}
-                          </Typography>
-                          {/* <Typography width='30px' variant="body2" color="textSecondary" component="p">
+          {trending &&
+            trending.docs.map(doc => {
+              const { title, image } = doc.data();
+              return (
+                <div className="__card" key={title}>
+                  <Card
+                    onClick={() => {
+                      props.history.push(`/cause/${doc.id}`);
+                    }}
+                    className={classes.card}
+                  >
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image={image}
+                        title="Contemplative Reptile"
+                      />
+                      <CardContent>
+                        <Typography
+                          className={classes.titleCard}
+                          gutterBottom
+                          variant="body1"
+                          component="h2"
+                          noWrap={true}
+                        >
+                          {title}
+                        </Typography>
+                        {/* <Typography width='30px' variant="body2" color="textSecondary" component="p">
                     Lizards are a widespread group of squamate reptiles, with over
                     6,000 species, ranging across all continents except Antarctica
                 </Typography> */}
-                        </CardContent>
-                      </CardActionArea>
-                    </Card>
-                  </div>
-                )
-              })
-          }
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              );
+            })}
         </div>
       </div>
     </Dialog>
