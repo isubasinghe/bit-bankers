@@ -17,7 +17,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PieChart = props => {
+  const colours = ["#FFF275", "#FF8C42", "#FF3C38", "#A23E48", "#6C8EAD", "#19535F", "#0B7A75", "#D7C9AA", "#7B2D26", "#F0F3F5", "#7DDF64"]
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Pie
@@ -25,11 +27,7 @@ const PieChart = props => {
         animationDuration={500}
         animationEasing="ease-out"
         className={classes.pie}
-        data={[
-          { title: "One", value: 10, color: "#E38627" },
-          { title: "Two", value: 15, color: "#C13C37" },
-          { title: "Three", value: 20, color: "#6A2135" }
-        ]}
+        data={props.donations.map((doc, index) => ({ ...doc, color: colours[index] }))}
       />
     </div>
   );

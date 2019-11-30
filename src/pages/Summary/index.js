@@ -54,7 +54,18 @@ const Donations = props => {
   const classes = useStyles();
   const [trending] = useCollection(trendingRef);
   const [recent] = useCollection(recentRef(firebase.auth().currentUser.uid));
-  const [user] = useDocument(userRef(firebase.auth().currentUser.uid))
+
+  const donationsData = () => {
+    if (recent) {
+      return recent.docs.map(doc => {
+        const { amount, cause } = doc.data();
+        return ({
+          title: cause.title,
+          value: amount
+        })
+      })
+    } else return []
+  }
 
   return (
     <Dialog
@@ -81,7 +92,7 @@ const Donations = props => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <PieChart />
+      <PieChart donations={donationsData()} />
 
       <Divider />
       <Typography align="center" variant="h6">
