@@ -103,39 +103,41 @@ const Donations = props => {
       <div className={classes.scrollingContainer}>
         <div className="scrolling-wrapper">
           {recent &&
-            recent.docs.map((doc, index) => {
-              const { cause, donatedAmount, causeId } = doc.data();
-              return (
-                <div className="__card" key={index}>
-                  <Card
-                    onClick={() => {
-                      props.history.push(`/cause/${causeId}`);
-                    }}
-                    className={classes.card}
-                  >
-                    <CardActionArea>
-                      <CardMedia
-                        className={classes.media}
-                        image={cause ? cause.image : ""}
-                        title="Contemplative Reptile"
-                      />
-                      <CardContent>
-                        <Typography
-                          className={classes.titleCard}
-                          gutterBottom
-                          variant="body1"
-                          component="h2"
-                          noWrap={true}
-                        >
-                          {cause ? cause.title : ""}
-                        </Typography>
-                        {`+$${donatedAmount}`}
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
-                </div>
-              );
-            })}
+            recent.docs
+              .map((doc, index) => {
+                const { cause, donatedAmount, causeId } = doc.data();
+                return (
+                  <div className="__card" key={index}>
+                    <Card
+                      onClick={() => {
+                        props.history.push(`/cause/${causeId}`);
+                      }}
+                      className={classes.card}
+                    >
+                      <CardActionArea>
+                        <CardMedia
+                          className={classes.media}
+                          image={cause ? cause.image : ""}
+                          title="Contemplative Reptile"
+                        />
+                        <CardContent>
+                          <Typography
+                            className={classes.titleCard}
+                            gutterBottom
+                            variant="body1"
+                            component="h2"
+                            noWrap={true}
+                          >
+                            {cause ? cause.title : ""}
+                          </Typography>
+                          {`+$${donatedAmount}`}
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </div>
+                );
+              })
+              .reverse()}
         </div>
       </div>
 

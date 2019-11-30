@@ -92,13 +92,15 @@ const Tax = props => {
   };
 
   const rows = transactions
-    ? transactions.docs.map(doc => {
-        return {
-          name: doc.data().cause.title,
-          date: moment.unix(doc.data().dateTime).format("DD/MM/YYYY"),
-          amount: doc.data().donatedAmount
-        };
-      })
+    ? transactions.docs
+        .map(doc => {
+          return {
+            name: doc.data().cause.title,
+            date: moment.unix(doc.data().dateTime).format("DD/MM/YYYY"),
+            amount: doc.data().donatedAmount
+          };
+        })
+        .reverse()
     : [];
   return (
     <Dialog
@@ -126,34 +128,33 @@ const Tax = props => {
       </AppBar>
       <BarChart donated={tDonated} taxReturns={taxReturns} />
       <Divider />
-      <div className={classes.divide}> 
-
-      <Typography align="center" variant="h6">
-        Donations
-      </Typography>
+      <div className={classes.divide}>
+        <Typography align="center" variant="h6">
+          Donations
+        </Typography>
       </div>
 
-      <Divider/>
-      <div className={classes.yeet}> 
-      <div ref={ref}>
-        <Table rows={rows} />
-      </div>
-      <Pdf targetRef={ref} filename="code-example.pdf">
-        {({ toPdf }) => (
-          <Button
-            onClick={toPdf}
-            style={{
-              marginLeft: "10vw",
-              width: "80vw",
-              marginTop: "5vw"
-            }}
-            variant="contained"
-            color="primary"
-          >
-            Generate PDF
-          </Button>
-        )}
-      </Pdf>
+      <Divider />
+      <div className={classes.yeet}>
+        <div ref={ref}>
+          <Table rows={rows} />
+        </div>
+        <Pdf targetRef={ref} filename="code-example.pdf">
+          {({ toPdf }) => (
+            <Button
+              onClick={toPdf}
+              style={{
+                marginLeft: "10vw",
+                width: "80vw",
+                marginTop: "5vw"
+              }}
+              variant="contained"
+              color="primary"
+            >
+              Generate PDF
+            </Button>
+          )}
+        </Pdf>
       </div>
       <Divider />
     </Dialog>
