@@ -94,6 +94,7 @@ const Tax = props => {
       </Typography>
       <Divider />
 
+
       <Divider />
       <Typography align="center" variant="h6">
         Tax Effect
