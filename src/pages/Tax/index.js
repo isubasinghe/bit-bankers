@@ -17,6 +17,8 @@ import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import Pdf from "react-to-pdf";
+import Table from "../../components/table";
+import moment from "moment";
 import BarChart from "../../components/bar";
 import { useDocument, useCollection } from "react-firebase-hooks/firestore";
 import { userRef, allTransactions } from "../../firestoreAPI.js";
@@ -81,6 +83,15 @@ const Tax = props => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
+  const rows = transactions
+    ? transactions.docs.map(doc => {
+        return {
+          name: doc.data().cause.title,
+          date: moment.unix(doc.data().dateTime).format("DD/MM/YYYY"),
+          amount: doc.data().donatedAmount
+        };
+      })
+    : [];
   return (
     <Dialog
       fullScreen
@@ -111,7 +122,9 @@ const Tax = props => {
         Donations
       </Typography>
       <Divider />
-      <div ref={ref}>asd</div>
+      <div ref={ref}>
+        <Table rows={rows} />
+      </div>
       <Pdf targetRef={ref} filename="code-example.pdf">
         {({ toPdf }) => (
           <Button
@@ -127,7 +140,6 @@ const Tax = props => {
           </Button>
         )}
       </Pdf>
-
       <Divider />
     </Dialog>
   );
