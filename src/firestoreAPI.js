@@ -16,3 +16,5 @@ export const causesRef = db.collection("causes")
 export const userRef = uuid => {
     return db.collection("users").doc(uuid)
 }
+
+export const recommendedRef = db.collection("causes").where("status", "==", "recommended")
