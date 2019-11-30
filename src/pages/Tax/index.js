@@ -85,29 +85,6 @@ const Tax = props => {
       </Typography>
       <Divider />
 
-      <Divider />
-      <Typography align="center" variant="h6">
-        Tax Effect
-      </Typography>
-      <Divider />
-
-         <div>
-        <FormControl fullWidth className={classes.margin} variant="filled">
-          <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-          <FilledInput
-            id="filled-adornment-amount"
-            value={values.amount}
-            onChange={handleChange('amount')}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            />
-        </FormControl>
-      
-        <Button variant="outlined" color="secondary" className={classes.calc}>
-          CALCULATE
-        </Button>
-          <p className={classes.amount}>Amount</p>
-        </div>
-
 
 
     </Dialog>
