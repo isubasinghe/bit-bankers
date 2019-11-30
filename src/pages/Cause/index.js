@@ -29,6 +29,7 @@ import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { causesRef } from "../../firestoreAPI.js";
 import taxF from "../../utils/tax";
+import firebase from "../../firebaseConfig.js"
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
@@ -124,12 +125,6 @@ const Cause = props => {
     donation: "Round Up"
   });
   const [showSnackBar, setShowSnackBar] = useState(false);
-  const makePayment = () => {
-    setShowSnackBar(true);
-    setTimeout(() => {
-      props.history.goBack();
-    }, 700);
-  };
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
@@ -138,13 +133,30 @@ const Cause = props => {
   const [cause] = useDocument(causesRef.doc(causeId));
   const orgs = cause
     ? cause
-        .data()
-        .organisations.sort()
-        .slice(0, 3)
+      .data()
+      .organisations.sort()
+      .slice(0, 3)
     : [];
   const taxedReductions =
     values.amount === "" ? "" : taxF(180000, Number(values.amount));
   const symbol = values.donation === "Income Percentage" ? "%" : "$";
+
+  const makePayment = () => {
+    setShowSnackBar(true);
+    setTimeout(() => {
+      props.history.goBack();
+    }, 700);
+
+    const db = firebase.firestore();
+    db.collection("transactions").add({
+      amount: Number(values.amount),
+      donatedAmount: taxedReductions,
+      causeId: causeId,
+      dateTime: Math.floor(Date.now() / 1000),
+      userId: firebase.auth().currentUser.uid
+    })
+  };
+
   return (
     <Dialog fullScreen open={true} TransitionComponent={Transition}>
       <AppBar className={classes.appBar}>
@@ -293,8 +305,8 @@ const Cause = props => {
             </FormControl>
           </>
         ) : (
-          <></>
-        )}
+            <></>
+          )}
       </FormControl>
       <Typography variant="h6" align="left">
         Amount to donate: {taxedReductions}
