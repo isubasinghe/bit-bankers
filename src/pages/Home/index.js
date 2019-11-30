@@ -1,8 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { makeStyles, rgbToHex } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import HamBurgerMenu from "../../assets/icons/menu.svg";
-import { Grid, Button, Paper } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import styled from "./index.module.scss";
 
 const useStyles = makeStyles(theme => ({
@@ -55,10 +55,18 @@ const LandingPage = React.memo(props => {
         <div className={styled.top}>
           <div className={styled.navbar}>
             <div className={styled.circleContainer}>
-              <img className={styled.hamburgerMenu} src={HamBurgerMenu} />
+              <img
+                alt="menu"
+                className={styled.hamburgerMenu}
+                src={HamBurgerMenu}
+              />
             </div>
             <div className={styled.circleContainer}>
-              <img className={styled.hamburgerMenu} src={HamBurgerMenu} />
+              <img
+                alt="search"
+                className={styled.hamburgerMenu}
+                src={HamBurgerMenu}
+              />
             </div>
           </div>
           <div className={classes.greetingContainer}>
