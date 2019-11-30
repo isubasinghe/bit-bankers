@@ -21,8 +21,11 @@ import {
   MenuItem,
   Snackbar
 } from "@material-ui/core";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
-import { light } from "@material-ui/core/styles/createPalette";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { causesRef } from "../../firestoreAPI.js";
 import taxF from "../../utils/tax";
@@ -49,7 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
   yellow: {
     background: "rgb(253, 214, 91)",
-    height: "150px",
+    height: "250px",
     boxShadow: "0 3px 5px 2px rgba(248, 208, 79, 1)"
   },
   black: {
@@ -132,8 +135,13 @@ const Cause = props => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const [cause] = useDocument(causesRef.doc(causeId))
-
+  const [cause] = useDocument(causesRef.doc(causeId));
+  const orgs = cause
+    ? cause
+        .data()
+        .organisations.sort()
+        .slice(0, 3)
+    : [];
   const taxedReductions =
     values.amount === "" ? "" : taxF(180000, Number(values.amount));
   const symbol = values.donation === "Income Percentage" ? "%" : "$";
@@ -165,15 +173,21 @@ const Cause = props => {
         className={classes.image}
         src={cause ? cause.data().image : ""}
       />
-      <p className={classes.description}>
-        {cause ? cause.data().details : ""}
-      </p>
+      <p className={classes.description}>{cause ? cause.data().details : ""}</p>
       <div className={classes.yellow}>
         <div className={classes.spacing}>
-          <h1 className={classes.header}>Yes</h1>
-          <p className={classes.description}>
-            This is where our money is going, are you fricken happy or wot?
-          </p>
+          <h1 className={classes.header}>Top organisations</h1>
+          <List>
+            {orgs.map((org, i) => {
+              return (
+                <>
+                  <ListItem key={i} button>
+                    <ListItemText align="center" primary={org} />
+                  </ListItem>
+                </>
+              );
+            })}
+          </List>
         </div>
       </div>
       <div className={classes.black}>
@@ -279,8 +293,8 @@ const Cause = props => {
             </FormControl>
           </>
         ) : (
-            <></>
-          )}
+          <></>
+        )}
       </FormControl>
       <Typography variant="h6" align="left">
         Amount to donate: {taxedReductions}
