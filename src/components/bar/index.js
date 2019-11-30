@@ -22,10 +22,9 @@ const BarChar = props => {
       data={[
         ["Method", "AUD"],
         ["Donated", 8175000],
-        ["Tax Reductions", 3792000]
+        ["Tax Return", 3792000]
       ]}
       options={{
-        title: "",
         chartArea: { width: "50%" },
         hAxis: {
           title: "Total Population",
