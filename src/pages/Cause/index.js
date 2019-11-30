@@ -204,7 +204,7 @@ const Cause = props => {
       </div>
       <div className={classes.black}>
         <div className={classes.spacing}>
-          <h1 className={classes.header2}>Graph</h1>
+          {/* <h1 className={classes.header2}>Graph</h1> */}
           <img
             alt="graph1"
             className={classes.image}
@@ -212,17 +212,18 @@ const Cause = props => {
           />
         </div>
       </div>
-      {/* <div className={classes.yellow}>
-        <div className={classes.spacing}>
-          <h1 className={classes.header}>Yes</h1>
-          <p className={classes.description}>
-            This is where our money is going, are you fricken happy or wot?
-          </p>
-        </div>
-      </div> */}
+      <div className={classes.yellow}>
+        {cause && (
+          <div className={classes.spacing}>
+            <p className={classes.description}>
+              {cause.data().fact1}
+            </p>
+          </div>
+        )}
+      </div>
       <div className={classes.black}>
         <div className={classes.spacing}>
-          <h1 className={classes.header2}>Graph</h1>
+          {/* <h1 className={classes.header2}>Graph</h1> */}
           <img
             alt="graph2"
             className={classes.image}
@@ -230,23 +231,17 @@ const Cause = props => {
           />
         </div>
       </div>
-      {/* <div className={classes.yellow}>
-        <div className={classes.spacing}>
-          <h1 className={classes.header}>Yes</h1>
-          <p className={classes.description}>
-            This is where our money is going, are you fricken happy or wot?
-          </p>
-        </div>
-      </div> */}
-      <div className={classes.black}>
-        <div className={classes.spacing}>
-          <h1 className={classes.header2}>Graph</h1>
-          <p className={classes.header2}>Graph and stats can go here</p>
-        </div>
+      <div className={classes.yellow}>
+        {cause && (
+          <div className={classes.spacing}>
+            <p className={classes.description}>
+              {cause.data().fact2}
+            </p>
+          </div>
+        )}
       </div>
 
       <Divider style={{ marginTop: "10px" }} />
-
       <Divider />
       <Paper>
         <Typography align="center" variant="h5" noWrap={true}></Typography>
