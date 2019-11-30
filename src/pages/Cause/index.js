@@ -22,6 +22,8 @@ import {
 } from "@material-ui/core";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 
+import taxF from "../../utils/tax";
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
 });
@@ -82,6 +84,9 @@ const Cause = props => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
+  const taxedReductions =
+    values.amount === "" ? "" : taxF(180000, Number(values.amount));
+  const symbol = values.donation === "Income Percentage" ? "%" : "$";
   return (
     <>
       <Dialog fullScreen open={true} TransitionComponent={Transition}>
@@ -125,7 +130,9 @@ const Cause = props => {
             id="filled-adornment-amount"
             value={values.amount}
             onChange={handleChange("amount")}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            startAdornment={
+              <InputAdornment position="start">{symbol}</InputAdornment>
+            }
           />
         </FormControl>
 
@@ -171,6 +178,9 @@ const Cause = props => {
             <></>
           )}
         </FormControl>
+        <Typography variant="h6" align="left">
+          Amount to donate: {taxedReductions}
+        </Typography>
       </Dialog>
     </>
   );
