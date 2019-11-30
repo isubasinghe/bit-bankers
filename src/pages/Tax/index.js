@@ -17,6 +17,9 @@ import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import BarChart from "../../components/bar";
+import { useDocument } from "react-firebase-hooks/firestore";
+import { userRef } from "../../firestoreAPI.js";
+import firebase from "../../firebaseConfig.js"
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -59,6 +62,9 @@ const Tax = props => {
     amount: ""
   });
 
+  const [user, loading, error] = useDocument(userRef(firebase.auth().currentUser.uid))
+  console.log(user ? user.data() : "")
+
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -67,7 +73,7 @@ const Tax = props => {
     <Dialog
       fullScreen
       open={true}
-      onClose={() => {}}
+      onClose={() => { }}
       TransitionComponent={Transition}
     >
       <AppBar className={classes.appBar}>
