@@ -4,6 +4,7 @@ import firebase from "../src/firebaseConfig.js";
 import LandingPage from "./pages/Home";
 import DonationSummary from "./pages/Summary";
 import Tax from "./pages/Tax";
+import Cause from "./pages/Cause";
 
 import "./App.scss";
 
@@ -24,6 +25,7 @@ function App() {
       <Route exact path="/" component={LandingPage} />
       <Route path="/donate" component={DonationSummary} />
       <Route path="/tax" component={Tax} />
+      <Route path="/cause/:causeId" component={Cause} />
     </Router>
   );
 }

@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Slide direction="right" ref={ref} {...props} />;
 });
 
 const Donations = props => {
@@ -41,7 +41,6 @@ const Donations = props => {
       open={true}
       onClose={() => {}}
       TransitionComponent={Transition}
-      className={classes.appBar}
     >
       <AppBar className={classes.appBar}>
         <Toolbar>
