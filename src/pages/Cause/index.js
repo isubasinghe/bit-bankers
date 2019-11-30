@@ -200,11 +200,9 @@ const Cause = props => {
           <List>
             {orgs.map((org, i) => {
               return (
-                <>
                   <ListItem key={i} button>
                     <ListItemText align="center" primary={org} />
                   </ListItem>
-                </>
               );
             })}
           </List>
