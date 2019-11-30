@@ -17,7 +17,7 @@ import ChevronLeft from "@material-ui/icons/ChevronLeft";
 
 import PieChart from "../../components/piechart";
 import { useCollection, useDocument } from "react-firebase-hooks/firestore";
-import { trendingRef, recentRef, userRef } from "../../firestoreAPI.js";
+import { trendingRef, recentRef, recommendedRef } from "../../firestoreAPI.js";
 import firebase from "../../firebaseConfig.js";
 
 const useStyles = makeStyles(theme => ({
@@ -54,6 +54,7 @@ const Donations = props => {
   const classes = useStyles();
   const [trending] = useCollection(trendingRef);
   const [recent] = useCollection(recentRef(firebase.auth().currentUser.uid));
+  const [recommend] = useCollection(recommendedRef);
 
   const donationsData = () => {
     if (recent) {
@@ -184,17 +185,55 @@ const Donations = props => {
             })}
         </div>
       </div>
+
+      <Divider />
+      <Typography align="center" variant="h6">
+        Recommended
+      </Typography>
+      <Divider />
+      <div className={classes.scrollingContainer}>
+        <div className="scrolling-wrapper">
+          {recommend &&
+            recommend.docs.map(doc => {
+              const { title, image } = doc.data();
+              return (
+                <div className="__card" key={title}>
+                  <Card
+                    onClick={() => {
+                      props.history.push(`/cause/${doc.id}`);
+                    }}
+                    className={classes.card}
+                  >
+                    <CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image={image}
+                        title="Contemplative Reptile"
+                      />
+                      <CardContent>
+                        <Typography
+                          className={classes.titleCard}
+                          gutterBottom
+                          variant="body1"
+                          component="h2"
+                          noWrap={true}
+                        >
+                          {title}
+                        </Typography>
+                        {/* <Typography width='30px' variant="body2" color="textSecondary" component="p">
+                    Lizards are a widespread group of squamate reptiles, with over
+                    6,000 species, ranging across all continents except Antarctica
+                </Typography> */}
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </div>
+              );
+            })}
+        </div>
+      </div>
     </Dialog>
   );
 };
-
-// const fetchTrending = db => {
-//   const trendingRef = db.collection("causes").where("status", "==", "trending");
-//   trendingRef.onSnapshot(querySnapshot => {
-//     querySnapshot.forEach(doc => {
-//       console.log(doc.data())
-//     })
-//   })
-// }
 
 export default Donations;
