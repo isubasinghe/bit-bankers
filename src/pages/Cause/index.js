@@ -1,6 +1,22 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import {Dialog, Slide, AppBar, Toolbar, Container, Typography, Divider, Paper, makeStyles, IconButton } from "@material-ui/core";
+import {
+  Dialog,
+  Slide,
+  AppBar,
+  Toolbar,
+  Container,
+  Typography,
+  Divider,
+  Paper,
+  makeStyles,
+  IconButton,
+  FormControl,
+  InputLabel,
+  FilledInput,
+  Button,
+  InputAdornment
+} from "@material-ui/core";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -28,6 +44,15 @@ const useStyles = makeStyles(theme => ({
 const Cause = props => {
   const { causeId } = useParams();
   const classes = useStyles();
+
+  const [values, setValues] = React.useState({
+    amount: ''
+  });
+  
+  const handleChange = prop => event => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
   return (
       <Dialog fullScreen open={true} TransitionComponent={Transition}>
 
@@ -64,6 +89,30 @@ const Cause = props => {
         <Paper>
           <Typography align="center" variant="h5" noWrap={true}></Typography>
         </Paper>
+
+        <Divider />
+      <Typography align="center" variant="h6">
+        Tax Effect
+      </Typography>
+      <Divider />
+
+         <div>
+        <FormControl fullWidth className={classes.margin} variant="filled">
+          <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+          <FilledInput
+            id="filled-adornment-amount"
+            value={values.amount}
+            onChange={handleChange('amount')}
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            />
+        </FormControl>
+      
+        <Button variant="outlined" color="secondary" className={classes.calc}>
+          CALCULATE
+        </Button>
+          <p className={classes.amount}>Amount</p>
+        </div>
+
       </Dialog>
   );
 };
