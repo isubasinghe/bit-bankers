@@ -29,6 +29,7 @@ import Tick from "@material-ui/icons/Check";
 import { causesRef } from "../../firestoreAPI.js";
 import taxF from "../../utils/tax";
 import firebase from "../../firebaseConfig.js"
+import { fontStyle } from "@material-ui/system";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
@@ -40,7 +41,8 @@ const useStyles = makeStyles(theme => ({
     top: "10px"
   },
   top: {
-    marginTop: '100px'
+    marginTop: '20px',
+    marginBottom: '10px' 
   },
   image: {
     width: "calc(100vw - 20px)",
@@ -66,7 +68,8 @@ const useStyles = makeStyles(theme => ({
     marginRight: "20px",
     fontFamily: "Verdana",
     textAlign: "center",
-    marginBottom: "20px"
+    marginBottom: "20px",
+    fontStyle: "italic"
   },
   header: {
     marginLeft: "20px",
@@ -121,6 +124,24 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "row",
     justifyContent: "center",
     width: "100vw"
+  },
+
+  textList: {
+    fontFamily: "Helvetica Neue",
+    fontWeight: "skinny",
+  },
+
+  orgs: {
+    marginLeft: "20px",
+    marginRight: "20px",
+    fontFamily: "Helvetica Neue",
+    fontWeight: "skinny",
+    textAlign: "center"
+  },
+
+  pat: {
+    marginBottom: "10px",
+    height: "25px"
   }
 }));
 
@@ -187,7 +208,7 @@ const Cause = props => {
 
 
       <Container>
-        <Typography align="center" variant="h4" className='top'>
+        <Typography align="center" variant="h4" className={classes.top}>
           {cause ? cause.data().title : ""}
         </Typography>
       </Container>
@@ -199,16 +220,18 @@ const Cause = props => {
       <p className={classes.description}>{cause ? cause.data().details : ""}</p>
       <div className={classes.yellow}>
         <div className={classes.spacing}>
-          <h1 className={classes.header}>Top organisations</h1>
+          <h1 className={classes.orgs}>Top Organisations</h1>
+          <div className={classes.textList}>
           <List>
             {orgs.map((org, i) => {
               return (
-                  <ListItem key={i} button>
+                  <ListItem className={classes.pat} key={i} button>
                     <ListItemText align="center" primary={org} />
                   </ListItem>
               );
             })}
           </List>
+          </div>
         </div>
       </div>
       <div className={classes.black}>
