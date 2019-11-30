@@ -20,7 +20,7 @@ import Pdf from "react-to-pdf";
 import BarChart from "../../components/bar";
 import { useDocument, useCollection } from "react-firebase-hooks/firestore";
 import { userRef, allTransactions } from "../../firestoreAPI.js";
-import firebase from "../../firebaseConfig.js"
+import firebase from "../../firebaseConfig.js";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -45,27 +45,37 @@ const Tax = props => {
     amount: ""
   });
 
-  const [user] = useDocument(userRef(firebase.auth().currentUser.uid))
-  const [transactions] = useCollection(allTransactions(firebase.auth().currentUser.uid))
+  const [user] = useDocument(userRef(firebase.auth().currentUser.uid));
+  const [transactions] = useCollection(
+    allTransactions(firebase.auth().currentUser.uid)
+  );
 
   const totalDonated = () => {
     if (transactions) {
-      return transactions.docs.reduce((prev, curr) => prev + curr.data().donatedAmount, 0)
+      return transactions.docs.reduce(
+        (prev, curr) => prev + curr.data().donatedAmount,
+        0
+      );
     } else {
-      return 0
+      return 0;
     }
-  }
+  };
 
   const totalAmount = () => {
     if (transactions) {
-      return transactions.docs.reduce((prev, curr) => prev + curr.data().amount, 0)
+      return transactions.docs.reduce(
+        (prev, curr) => prev + curr.data().amount,
+        0
+      );
     } else {
-      return 0
+      return 0;
     }
-  }
+  };
 
-  console.log(totalDonated())
-  console.log(totalAmount())
+  console.log(totalDonated());
+  console.log(totalAmount());
+  const tDonated = totalDonated();
+  const taxReturns = tDonated - totalAmount();
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
@@ -95,7 +105,7 @@ const Tax = props => {
           </Typography>
         </Toolbar>
       </AppBar>
-      <BarChart />
+      <BarChart donated={tDonated} taxReturns={taxReturns} />
       <Divider />
       <Typography align="center" variant="h6">
         Donations
