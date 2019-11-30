@@ -31,6 +31,14 @@ const useStyles = makeStyles(theme => ({
   title: {
     marginLeft: theme.spacing(2),
     flex: 1
+  },
+  divide: {
+    marginTop: "10px",
+    marginBottom: "10px"
+  },
+
+  yeet: {
+    marginBottom: "10px"
   }
 }));
 
@@ -118,10 +126,15 @@ const Tax = props => {
       </AppBar>
       <BarChart donated={tDonated} taxReturns={taxReturns} />
       <Divider />
+      <div className={classes.divide}> 
+
       <Typography align="center" variant="h6">
         Donations
       </Typography>
-      <Divider />
+      </div>
+
+      <Divider/>
+      <div className={classes.yeet}> 
       <div ref={ref}>
         <Table rows={rows} />
       </div>
@@ -131,7 +144,8 @@ const Tax = props => {
             onClick={toPdf}
             style={{
               marginLeft: "10vw",
-              width: "80vw"
+              width: "80vw",
+              marginTop: "5vw"
             }}
             variant="contained"
             color="primary"
@@ -140,6 +154,7 @@ const Tax = props => {
           </Button>
         )}
       </Pdf>
+      </div>
       <Divider />
     </Dialog>
   );
