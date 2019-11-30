@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -16,10 +16,11 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Slide from "@material-ui/core/Slide";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
+import Pdf from "react-to-pdf";
 import BarChart from "../../components/bar";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { userRef } from "../../firestoreAPI.js";
-import firebase from "../../firebaseConfig.js"
+import firebase from "../../firebaseConfig.js";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -28,28 +29,10 @@ const useStyles = makeStyles(theme => ({
   title: {
     marginLeft: theme.spacing(2),
     flex: 1
-  },
-  card: {
-    width: 350
-  },
-  media: {
-    height: 140
-  },
-  scrollingContainer: {
-    heigth: 100,
-    marginBottom: "20px"
-  },
-  content: {
-    width: "50%"
-  },
-  boxing: {
-    marginLeft: "10px",
-    width: "60%"
-  },
-  calc: {
-    width: "150px"
   }
 }));
+
+const ref = createRef();
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -62,8 +45,10 @@ const Tax = props => {
     amount: ""
   });
 
-  const [user, loading, error] = useDocument(userRef(firebase.auth().currentUser.uid))
-  console.log(user ? user.data() : "")
+  const [user, loading, error] = useDocument(
+    userRef(firebase.auth().currentUser.uid)
+  );
+  console.log(user ? user.data() : "");
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
@@ -73,7 +58,7 @@ const Tax = props => {
     <Dialog
       fullScreen
       open={true}
-      onClose={() => { }}
+      onClose={() => {}}
       TransitionComponent={Transition}
     >
       <AppBar className={classes.appBar}>
@@ -99,30 +84,24 @@ const Tax = props => {
         Donations
       </Typography>
       <Divider />
-
+      <div ref={ref}>asd</div>
+      <Pdf targetRef={ref} filename="code-example.pdf">
+        {({ toPdf }) => (
+          <Button
+            onClick={toPdf}
+            style={{
+              marginLeft: "10vw",
+              width: "80vw"
+            }}
+            variant="contained"
+            color="primary"
+          >
+            Generate PDF
+          </Button>
+        )}
+      </Pdf>
 
       <Divider />
-      <Typography align="center" variant="h6">
-        Tax Effect
-      </Typography>
-      <Divider />
-
-      <div>
-        <FormControl fullWidth className={classes.margin} variant="filled">
-          <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
-          <FilledInput
-            id="filled-adornment-amount"
-            value={values.amount}
-            onChange={handleChange("amount")}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-          />
-        </FormControl>
-
-        <Button variant="outlined" color="secondary" className={classes.calc}>
-          CALCULATE
-        </Button>
-        <p className={classes.amount}>Amount</p>
-      </div>
     </Dialog>
   );
 };
