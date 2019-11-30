@@ -39,6 +39,9 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     top: "10px"
   },
+  top: {
+    marginTop: '100px'
+  },
   image: {
     width: "calc(100vw - 20px)",
     height: "auto !important",
@@ -73,7 +76,8 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   },
   spacing: {
-    marginBottom: "50px"
+    marginTop: "25px",
+    marginBottom: "30px"
   },
   header2: {
     marginLeft: "20px",
@@ -99,7 +103,9 @@ const useStyles = makeStyles(theme => ({
   },
 
   margin: {
-    marginTop: "10px"
+    marginTop: "10px",
+    width: '90%',
+    align: 'center'
   },
 
   donation: {
@@ -174,9 +180,11 @@ const Cause = props => {
           </Typography>
         </Toolbar>
       </AppBar>
+      <Divider />
+
 
       <Container>
-        <Typography align="center" variant="h4">
+        <Typography align="center" variant="h4" className='top'>
           {cause ? cause.data().title : ""}
         </Typography>
       </Container>
@@ -247,14 +255,13 @@ const Cause = props => {
         <Typography align="center" variant="h5" noWrap={true}></Typography>
       </Paper>
 
-      <Divider />
       <Typography align="center" variant="h6">
         Donate
       </Typography>
       <Divider />
-
-      <FormControl fullWidth className={classes.margin} variant="filled">
-        <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+      <div style={{align: 'center', width:'100px'}}>
+      <FormControl className={classes.margin} variant="filled">
+        <InputLabel align='center' htmlFor="filled-adornment-amount">Amount</InputLabel>
         <FilledInput
           id="filled-adornment-amount"
           value={values.amount}
@@ -263,7 +270,7 @@ const Cause = props => {
             <InputAdornment position="start">{symbol}</InputAdornment>
           }
         />
-      </FormControl>
+      </FormControl></div>
 
       <Divider />
       <FormControl fullWidth className={classes.margin}>
