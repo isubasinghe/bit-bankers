@@ -18,7 +18,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 
-import PieChart from "../piechart";
+import PieChart from "../../components/piechart";
 
 const useStyles = makeStyles(theme => ({
   appBar: {
