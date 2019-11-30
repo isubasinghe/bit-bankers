@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import {
   Dialog,
   Slide,
@@ -15,6 +15,7 @@ import {
   InputLabel,
   FilledInput,
   InputAdornment,
+  Grid,
   Select,
   MenuItem
 } from "@material-ui/core";
@@ -39,6 +40,32 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     position: "relative"
+
+  },
+  calc: {
+    width: '150px',
+    height: '57px',
+    marginLeft: "20px",
+    marginTop: "20px"
+  },
+  
+  amount: {
+    fontSize: "18px",
+    fontFamily: "Arial",
+    fontWeight: "Bold",
+    marginLeft: "200px",
+    marginTop: "-40px"
+  },
+
+  margin: {
+    width: "150px",
+    marginLeft: "20px"
+
+  },
+
+  donation: {
+    width: "150px",
+    height: "40px"
   }
 }));
 const Cause = props => {
@@ -91,21 +118,44 @@ const Cause = props => {
         </Typography>
         <Divider />
 
-        <div>
+         <div>
+          <Grid container spacing = {3}>
+          <Grid item xs>
+        
           <FormControl fullWidth className={classes.margin} variant="filled">
             <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
             <FilledInput
               id="filled-adornment-amount"
               value={values.amount}
-              onChange={handleChange("amount")}
-              startAdornment={
-                <InputAdornment position="start">$</InputAdornment>
-              }
-              placeholder="Amount willing to donate"
-            />
+              onChange={handleChange('amount')}
+              startAdornment={<InputAdornment position="start">$</InputAdornment>}
+              />
           </FormControl>
-          <p className={classes.amount}>Amount to donate: </p>
+          </Grid>
+
+          <Grid item xs>
+          <FormControl fullWidth className={classes.donation} variant="filled">
+              <FilledInput
+              value={values.amount}
+              onChange={handleChange('amount')}
+              startAdornment={<InputAdornment position="start">$</InputAdornment>}
+              />
+          </FormControl>
+          </Grid>
+
+          </Grid>       
+         
+      
+        <Button variant="outlined" color="secondary" className={classes.calc}>
+          CALCULATE
+        </Button>
+        
+
+        <p className={classes.amount}>Donation Amount</p>
+
         </div>
+             
+
         <Divider />
         <FormControl fullWidth className={classes.margin}>
           <InputLabel htmlFor="filled-adornment-amount">
