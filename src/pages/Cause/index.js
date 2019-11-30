@@ -38,6 +38,18 @@ const useStyles = makeStyles(theme => ({
 const Cause = props => {
   const { causeId } = useParams();
   const classes = useStyles();
+<<<<<<< Updated upstream
+=======
+
+  const [values, setValues] = React.useState({
+    amount: ""
+  });
+
+  const handleChange = prop => event => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+>>>>>>> Stashed changes
   return (
     <>
       <Dialog fullScreen open={true} TransitionComponent={Transition}>
@@ -68,6 +80,34 @@ const Cause = props => {
         <Paper>
           <Typography align="center" variant="h5" noWrap={true}></Typography>
         </Paper>
+<<<<<<< Updated upstream
+=======
+
+        <Divider />
+        <Typography align="center" variant="h6">
+          Tax Effect
+        </Typography>
+        <Divider />
+
+        <div>
+          <FormControl fullWidth className={classes.margin} variant="filled">
+            <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
+            <FilledInput
+              id="filled-adornment-amount"
+              value={values.amount}
+              onChange={handleChange("amount")}
+              startAdornment={
+                <InputAdornment position="start">$</InputAdornment>
+              }
+            />
+          </FormControl>
+
+          <Button variant="outlined" color="secondary" className={classes.calc}>
+            CALCULATE
+          </Button>
+          <p className={classes.amount}>Amount</p>
+        </div>
+>>>>>>> Stashed changes
       </Dialog>
     </>
   );
