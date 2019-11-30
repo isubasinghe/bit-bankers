@@ -179,7 +179,11 @@ const Cause = props => {
       <div className={classes.black}>
         <div className={classes.spacing}>
           <h1 className={classes.header2}>Graph</h1>
-          <p className={classes.header2}>Graph and stats can go here</p>
+          <img
+            alt="graph1"
+            className={classes.image}
+            src={cause ? cause.data().graph1 : ""}
+          />
         </div>
       </div>
       <div className={classes.yellow}>
@@ -193,7 +197,11 @@ const Cause = props => {
       <div className={classes.black}>
         <div className={classes.spacing}>
           <h1 className={classes.header2}>Graph</h1>
-          <p className={classes.header2}>Graph and stats can go here</p>
+          <img
+            alt="graph2"
+            className={classes.image}
+            src={cause ? cause.data().graph2 : ""}
+          />
         </div>
       </div>
       <div className={classes.yellow}>

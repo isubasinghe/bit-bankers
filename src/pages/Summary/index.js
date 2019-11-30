@@ -16,8 +16,8 @@ import {
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 
 import PieChart from "../../components/piechart";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { trendingRef, recentRef } from "../../firestoreAPI.js";
+import { useCollection, useDocument } from "react-firebase-hooks/firestore";
+import { trendingRef, recentRef, userRef } from "../../firestoreAPI.js";
 import firebase from "../../firebaseConfig.js";
 
 const useStyles = makeStyles(theme => ({
@@ -54,6 +54,7 @@ const Donations = props => {
   const classes = useStyles();
   const [trending] = useCollection(trendingRef);
   const [recent] = useCollection(recentRef(firebase.auth().currentUser.uid));
+  const [user] = useDocument(userRef(firebase.auth().currentUser.uid))
 
   return (
     <Dialog
