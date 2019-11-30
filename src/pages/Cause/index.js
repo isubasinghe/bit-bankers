@@ -23,7 +23,8 @@ import {
 } from "@material-ui/core";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import { light } from "@material-ui/core/styles/createPalette";
-
+import { useDocument } from "react-firebase-hooks/firestore";
+import { causesRef } from "../../firestoreAPI.js";
 import taxF from "../../utils/tax";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -131,6 +132,8 @@ const Cause = props => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
+  const [cause] = useDocument(causesRef.doc(causeId))
+
   const taxedReductions =
     values.amount === "" ? "" : taxF(180000, Number(values.amount));
   const symbol = values.donation === "Income Percentage" ? "%" : "$";
@@ -154,20 +157,16 @@ const Cause = props => {
 
       <Container>
         <Typography align="center" variant="h4">
-          {causeId}
+          {cause ? cause.data().title : ""}
         </Typography>
       </Container>
       <img
         alt="cause"
         className={classes.image}
-        src="https://scontent.fmel7-1.fna.fbcdn.net/v/t1.15752-9/78450477_2502956249976006_3599448396689047552_n.jpg?_nc_cat=107&_nc_ohc=jSFIHZjh6OYAQmb6zJL5MFEIvYFz-uLV9lyHzQGgkgXXVZFRLXoJ3wHJA&_nc_ht=scontent.fmel7-1.fna&oh=3a3aa0bb826f318dc7e10a513594397c&oe=5E81D77D"
+        src={cause ? cause.data().image : ""}
       />
       <p className={classes.description}>
-        Bushfires in Australia are common, impact extensive areas, and can cause
-        property damage and loss of human life. However, certain native flora in
-        Australia have evolved to rely on bushfires as a means of reproduction,
-        and fire events are an interwoven and an essential part of the ecology
-        of the continent.
+        {cause ? cause.data().details : ""}
       </p>
       <div className={classes.yellow}>
         <div className={classes.spacing}>
@@ -272,8 +271,8 @@ const Cause = props => {
             </FormControl>
           </>
         ) : (
-          <></>
-        )}
+            <></>
+          )}
       </FormControl>
       <Typography variant="h6" align="left">
         Amount to donate: {taxedReductions}
