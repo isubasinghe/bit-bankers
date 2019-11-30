@@ -38,8 +38,6 @@ const useStyles = makeStyles(theme => ({
 const Cause = props => {
   const { causeId } = useParams();
   const classes = useStyles();
-<<<<<<< Updated upstream
-=======
 
   const [values, setValues] = React.useState({
     amount: ""
@@ -49,7 +47,6 @@ const Cause = props => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
->>>>>>> Stashed changes
   return (
     <>
       <Dialog fullScreen open={true} TransitionComponent={Transition}>
@@ -80,8 +77,6 @@ const Cause = props => {
         <Paper>
           <Typography align="center" variant="h5" noWrap={true}></Typography>
         </Paper>
-<<<<<<< Updated upstream
-=======
 
         <Divider />
         <Typography align="center" variant="h6">
@@ -107,7 +102,6 @@ const Cause = props => {
           </Button>
           <p className={classes.amount}>Amount</p>
         </div>
->>>>>>> Stashed changes
       </Dialog>
     </>
   );
